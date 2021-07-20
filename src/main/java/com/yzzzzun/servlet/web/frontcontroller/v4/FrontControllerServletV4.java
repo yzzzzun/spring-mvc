@@ -15,7 +15,7 @@ import com.yzzzzun.servlet.web.frontcontroller.v4.controller.MemberFormControlle
 import com.yzzzzun.servlet.web.frontcontroller.v4.controller.MemberListControllerV4;
 import com.yzzzzun.servlet.web.frontcontroller.v4.controller.MemberSaveControllerV4;
 
-@WebServlet(name = "frontControllerServletV3", urlPatterns = "/front-controller/v3/*")
+@WebServlet(name = "frontControllerServletV4", urlPatterns = "/front-controller/v4/*")
 public class FrontControllerServletV4 extends HttpServlet {
 	private final Map<String, ControllerV4> controllerMap = new ConcurrentHashMap<>();
 

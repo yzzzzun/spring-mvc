@@ -142,3 +142,48 @@ Front Controller 패턴을 도입해서 문제를 해결할 수 있다. Spring M
   ---
 
   지금까지의 컨트롤러들은 호환이 불가능한 단점이 있다.
+
+- /servlet/web/frontcontroller/v5
+
+  핸들러 어댑터를 통해 원하는 종류의 컨트롤러를 호출한다.
+
+### DispatcherServlet
+
+이런 과정들이 SpringMVC 구조와 유사하게 만들어본 내용이다.
+
+- FrontController -> DispatcherServlet
+
+- handlerMappingMap -> HandlerMapping
+
+- MyHandlerAdapter -> HandlerAdapter
+
+- ModelView -> ModelAndView
+
+- viewResolver -> ViewResolver
+
+- MyView -> View
+
+---
+
+DispatcherServlet도 상속을 따라가다보면 HttpServlet을 상속받아 사용하고, 서블릿으로 동작한다.
+
+스프링 부트는 DispatcherServlet을 서블릿으로 자동등록하면서 모든 경로를 매핑한다.
+
+### 요청 흐름
+
+DispatcherServlet의 부모인 FrameworkServlet에서 service 메서드를 오버라이드 되어있다.
+
+service 메서드를 시작으로 DispatcherServlet의 doDispatcher가 호출된다.
+
+정리하면
+
+1. 핸들러 조회
+2. 핸들러 어댑터를 조회 - 핸들러를 처리 할 수 있는 어댑터
+3. 핸들러 어댑터를 실행
+4. 핸들러 어댑터를 통해 핸들러를 실행
+5. ModelAndView 반환
+6. ViewResolver를 통해 View반환
+7. View 렌더링
+
+### 핸들러 매핑과 핸들러 어댑터
+
