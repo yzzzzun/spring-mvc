@@ -128,3 +128,10 @@ Front Controller 패턴을 도입해서 문제를 해결할 수 있다. Spring M
 - /servlet/web/frontcontroller/v2
 
   각각의 컨트롤러에서 forward하는 중복 로직을 MyView 객체를 통해 FrontController로 반환하고 forward하는 방식으로 변경
+
+- /servlet/web/frontcontroller/v3
+
+  View 경로의 경로 중복을 제거 - 컨트롤러가 반환한 논리 뷰 이름을 실제 물리 뷰 경로로 변경한다. View Resolver
+
+  개별 컨트롤러의 서블릿 request, response의 종속성을 제거 - FrontController만 request, response에 종속적
+
