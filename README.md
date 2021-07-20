@@ -40,3 +40,10 @@ HTTP응답 메세지 생성 - HTTP응답 코드, Header, Body 생성기능을 �
 
 편의 기능으로 Content-Type, Cookie, Redirect 제공
 
+## Template Engine
+
+`servlet` 으로 동적인 HTML을 만들 수 있었다. 그런데 코드 자체가 복잡하고 생산성이 너무 떨어진다.
+
+그래서 자바코드로 HTML을 관리하는게 아닌 HTML문서에 동적으로 데이터를 변경하는 자바코드를 넣을 수 있도록해주는 Template Engine이 등장한다.
+
+JSP, Thymeleaf, Velocity 등 다양한 템플릿 엔진이 있지만 Spring과 잘맞는 Thymeleaf를 사용하도록 한다.
