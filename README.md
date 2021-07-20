@@ -187,3 +187,35 @@ service 메서드를 시작으로 DispatcherServlet의 doDispatcher가 호출된
 
 ### 핸들러 매핑과 핸들러 어댑터
 
+HandlerMapping
+
+- 핸들러 매핑에서 핸들러 어댑터를 찾을 수 있어야한다.
+
+  ```
+  0 = RequestMappingHandlerMapping : 애노테이션 기반의 컨트롤러인 @RequestMapping에서 사용
+  1 = BeanNameUrlHandlerMapping : 스프링 빈의 이름으로 핸들러를 찾는다.
+  ```
+
+HandlerAdapter
+
+- 핸들러 매핑을 통해서 찾은 핸들러를 실행할 수 있는 핸들러 어댑터가 필요하다.
+
+  ```
+  0 = RequestMappingHandlerAdapter : 애노테이션 기반의 컨트롤러인 @RequestMapping에서 사용
+  1 = HttpRequestHandlerAdapter : HttpRequestHandler 처리
+  2 = SimpleControllerHandlerAdapter : Controller 인터페이스(애노테이션X, 과거에 사용) 처리
+  ```
+
+### View Resolver
+
+Spring Boots는 InternalResourceViewResolver 를 자동 등록하고 application.properties를 통해 prefix, suffix를 설정하여 해당 정보를 통해 등록.
+
+```
+1 = BeanNameViewResolver : 빈 이름으로 뷰를 찾아서 반환한다. (예: 엑셀 파일 생성 기능에 사용)
+2 = InternalResourceViewResolver : JSP를 처리할 수 있는 뷰를 반환한다.
+```
+
+view이름을 통해 ViewResolver를 찾고, viewResolver를 통해 view를 반환한다.
+
+View는 render를 호출하고 forward하여 jsp를 실행한다.
+
