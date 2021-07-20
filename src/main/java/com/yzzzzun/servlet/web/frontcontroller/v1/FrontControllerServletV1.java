@@ -31,7 +31,6 @@ public class FrontControllerServletV1 extends HttpServlet {
 		IOException {
 
 		String requestURI = request.getRequestURI();
-		System.out.println("requestURI = " + requestURI);
 
 		ControllerV1 controller = controllerMap.get(requestURI);
 		if (controller == null) {
@@ -39,6 +38,5 @@ public class FrontControllerServletV1 extends HttpServlet {
 			return;
 		}
 		controller.process(request, response);
-
 	}
 }

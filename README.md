@@ -119,3 +119,12 @@ Front Controller 패턴을 도입해서 문제를 해결할 수 있다. Spring M
 
 프론트 컨트롤러를 제외하고 나머지 컨트롤러는 서블릿을 사용하지 않아도된다.
 
+
+
+- /servlet/web/frontcontroller/v1
+
+  가장 앞단에 서블릿 하나를 통해서 요청을 받고 각 컨트롤러로 비즈니스 로직을 처리하는 구조로 변경
+
+- /servlet/web/frontcontroller/v2
+
+  각각의 컨트롤러에서 forward하는 중복 로직을 MyView 객체를 통해 FrontController로 반환하고 forward하는 방식으로 변경

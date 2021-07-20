@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yzzzzun.servlet.web.frontcontroller.v1.ControllerV1;
 
 public class MemberFormControllerV1 implements ControllerV1 {
-	
+
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String viewPath = "/WEB-INF/views/new-form.jsp";
