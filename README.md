@@ -135,3 +135,10 @@ Front Controller 패턴을 도입해서 문제를 해결할 수 있다. Spring M
 
   개별 컨트롤러의 서블릿 request, response의 종속성을 제거 - FrontController만 request, response에 종속적
 
+- /servlet/web/frontcontroller/v4
+
+  개발자의 사용 편의성을 개선 - 객체가 아닌 뷰 이름만 반환하도록
+
+  ---
+
+  지금까지의 컨트롤러들은 호환이 불가능한 단점이 있다.
