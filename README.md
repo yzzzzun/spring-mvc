@@ -316,7 +316,7 @@ HttpMessageConverter는 HTTP 요청, 응답 둘다 사용
 
 ArgumentResolver, ReturnValueHandler들이 HttpMessageConverter를 사용해서 필요한 값들을 생성한다
 
-
+---
 
 ### Tymeleaf
 
@@ -330,3 +330,6 @@ spring.thymeleaf.suffix=.html
 ```
 
 공식문서 참고 : https://docs.spring.io/spring-boot/docs/2.4.3/reference/html/appendix-application-properties.html#common-application-properties-templating
+
+---
+
