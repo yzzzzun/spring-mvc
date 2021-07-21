@@ -244,6 +244,36 @@ View는 render를 호출하고 forward하여 jsp를 실행한다.
 
 ---
 
-### @RequestBody
+### HTTP응답 - 정적 리소스, 뷰 템플릿
 
-생략하면 @ModelAttribute가 붙는다. 
+/static, /public, /resources, /META-INF/resources 디렉토리의 정적리소스를 제공
+
+Src/main/resources는 리소스를 보관하는곳, 또 클래스패스의 시작경로
+
+응답 방식
+
+​	HttpServletResponse -> writer를 통해 메세지 반환
+
+​	HttpEntity사용해서 반환
+
+​	@ResponseBody 통해서 반환, @ResponseStatus로 상태코드 반환
+
+​	@RestController를 사용하면 @ResponseBody를 기본 적용하여 데이터를 직접 반환
+
+​		View Resolver 대신 HttpMessageConverter 동작
+
+### Tymeleaf
+
+스프링 부트가 자동으로 ThymeleafViewResolver를 빈으로 등록한다.
+
+prefix, suffix설정
+
+```
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+```
+
+공식문서 참고 : https://docs.spring.io/spring-boot/docs/2.4.3/reference/html/appendix-application-properties.html#common-application-properties-templating
+
+
+
