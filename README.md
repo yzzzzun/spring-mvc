@@ -1,4 +1,7 @@
+
+
 # spring-mvc
+
 ### 웹 애플리케이션 서버의 요청 및 응답
 
 1. 웹 브라우저를 통해 HTTP요청 
@@ -331,6 +334,36 @@ spring.thymeleaf.suffix=.html
 
 공식문서 참고 : https://docs.spring.io/spring-boot/docs/2.4.3/reference/html/appendix-application-properties.html#common-application-properties-templating
 
+
+
+- SSR(Server Side Rendering)
+
+  Backend 서버에서 HTML을 동적으로 렌더링한다.
+
+- Natural Template
+
+  순수 HTML을 최대한 유지한다. 파일을 열어도 내용을 확인 할 수 있다.
+
+  서버를 통해 뷰 템플릿을 거쳐 동적으로 변경된 결과를 확인할 수 있다.
+
+- 스프링 통합 지원
+
+- 타임리프 사용
+
+  ```html
+  <html xmlns:th="http://www.thymeleaf.org">
+  ```
+
+### Escape
+
+HTML엔티티 : `<` 태그의 시작이 아니라 문자로 표현할 방법
+
+HTML에서 사용하는 특수문자를 HTML엔티티로 변경하는것을 escape라 한다.  `th:text` 사용
+
+unEscape : 태그로 인식 -> `th:utext` 사용
+
+> escape를 사용하지 않아 HTML 이 정상 렌더링 되지 않는 문제가 발생하기도 한다. escape를 기본으로 하고 필요할떄 unescape을 사용해야 한다.
+
 ---
 
 ### 참고
@@ -352,4 +385,6 @@ spring.thymeleaf.suffix=.html
 PRG -> Post/Redirect/Get
 
 redirect로 상품상세화면을 호출하도록 해주면 새로고침을 해도 추가되지 않는다.
+
+---
 
