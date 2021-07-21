@@ -262,6 +262,62 @@ Src/main/resources는 리소스를 보관하는곳, 또 클래스패스의 시�
 
 ​		View Resolver 대신 HttpMessageConverter 동작
 
+### HttpMessageConverter
+
+바이트 처리 : ByteArrayHttpMessageConverter  
+
+​	- 요청 응답 byte[] data
+
+​	- 미디어타입 ->`application/octet-stream`
+
+기본 문자처리 : StringHttpMessageConverter
+
+​	- 요청 응답 String data
+
+​	- 미디어타입 ->`text/plain`
+
+객체 처리 : MappingJackson2HttpMessageConverter 
+
+​	- 요청 응답 HelloData data , HashMap
+
+​	- 미디어타입 ->`application/json`
+
+HttpMessageConverter는 HTTP 요청, 응답 둘다 사용
+
+- 해당 클래스와 미디어타입을 지원하는지 확인
+
+  요청시 `canRead()` 로 대상 클래스 타입을 지원하는지 확인, Http요청의 Content-Type 미디어 타입 지원 확인
+
+  조건을 만족하면 `read()` 를 통해 객체 생성 및 반환
+
+- 메시지를 읽고 쓰는 기능
+
+  응답시 `canWrite()` 로 대상 클래스 타입 지원 확인, Http요청의 Accept 미디어 타입 지원을 확인(클라이언트가 메세지를 읽을 수 있다는걸 확인해야하기 때문)
+
+  조건을 만족하면 `write()` 를 통해 http body에 데이터 생성
+
+## ReuqestMappingHandlerAdapter 동작방식
+
+1. DispatcherServlet으로부터 @RequestMapping 애노테이션 기반의 요청이 들어오면 핸들러 어댑터를 찾아 RequestMappingHandlerAdapter를 찾게 된다.
+
+2. RequestMappingHandlerAdapter는 ArgumentResolver를 호출해서 컨트롤러가 필요로 하는 다양한 파라미터 값들을 생성한다.
+
+   @RequestParam, @RequestBody, @ModelAttribute 등등..
+
+3. 파라미터의 값이 준비가되면 컨트롤러를 호출하며 값을 넘겨준다.
+
+4. 응답의 반환은 ReturnValueHandler를 통해 ArgumentResolver와 비슷하게 응답 값을 준비해서 반환한다.
+
+   @ResponseBody, ModelAndView, HttpEntity..
+
+> 공식문서 참고해서 Arguments, Return Values 참고하자.
+>
+> https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-arguments
+
+ArgumentResolver, ReturnValueHandler들이 HttpMessageConverter를 사용해서 필요한 값들을 생성한다
+
+
+
 ### Tymeleaf
 
 스프링 부트가 자동으로 ThymeleafViewResolver를 빈으로 등록한다.
@@ -274,6 +330,3 @@ spring.thymeleaf.suffix=.html
 ```
 
 공식문서 참고 : https://docs.spring.io/spring-boot/docs/2.4.3/reference/html/appendix-application-properties.html#common-application-properties-templating
-
-
-
