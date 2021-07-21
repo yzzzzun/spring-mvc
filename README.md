@@ -337,3 +337,8 @@ spring.thymeleaf.suffix=.html
 
 `/resources/static` 폴더에 HTML을 넣어두면 실제 서비스에서도 공개된다. 공개할 필요가 없는 HTML을 두는것을 피하자.
 
+@ModelAttribute는 프로퍼티 접근법(setXXX)로 입력
+
+@ModelAttribute의 추가기능은 name속성을 통해 모델에 포함시킬 수 있다.
+
+​	@ModelAttribute("item")  -> model.addAttribute("item", item) 자동 추가해준다.
