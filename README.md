@@ -342,3 +342,14 @@ spring.thymeleaf.suffix=.html
 @ModelAttribute의 추가기능은 name속성을 통해 모델에 포함시킬 수 있다.
 
 ​	@ModelAttribute("item")  -> model.addAttribute("item", item) 자동 추가해준다.
+
+
+
+웹 브라우저의 새로고침은 마지막 서버 전송데이터를 다시 전송
+
+상품 등록 폼에서 데이터 입력 저장 -> 새로고침 -> 다시 저장 요청 -> 동일한 데이터가 계속 쌓임
+
+PRG -> Post/Redirect/Get
+
+redirect로 상품상세화면을 호출하도록 해주면 새로고침을 해도 추가되지 않는다.
+
