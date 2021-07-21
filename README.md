@@ -242,3 +242,8 @@ View는 render를 호출하고 forward하여 jsp를 실행한다.
 
 ​	 -> Spring제공하는 @RequestParam, @GetMapping, @PostMapping 등 편의 기능을 사용하여 코드 정리
 
+---
+
+### @RequestBody
+
+생략하면 @ModelAttribute가 붙는다. 
