@@ -333,3 +333,7 @@ spring.thymeleaf.suffix=.html
 
 ---
 
+### 참고
+
+`/resources/static` 폴더에 HTML을 넣어두면 실제 서비스에서도 공개된다. 공개할 필요가 없는 HTML을 두는것을 피하자.
+
