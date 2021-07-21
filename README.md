@@ -219,3 +219,26 @@ view이름을 통해 ViewResolver를 찾고, viewResolver를 통해 view를 반�
 
 View는 render를 호출하고 forward하여 jsp를 실행한다.
 
+---
+
+### Spring MVC
+
+ @RequestMapping 애노테이션을 사용하는 컨트롤러
+
+- RequestMappingHandleMapping
+- RequestMappingHandlerAdapter
+
+우선순위가 가장 높은 핸들러 매핑과 핸들러로 실무에서 거의 이방식을 사용한다.
+
+/servlet/web/springmvc/v1
+
+​	 -> 기존 FrontController방식을 @RequestMapping 어노테이션 기반으로 변경
+
+/servlet/web/springmvc/v2
+
+​	 -> 하나의 컨트롤러로 통합
+
+/servlet/web/springmvc/v3
+
+​	 -> Spring제공하는 @RequestParam, @GetMapping, @PostMapping 등 편의 기능을 사용하여 코드 정리
+
