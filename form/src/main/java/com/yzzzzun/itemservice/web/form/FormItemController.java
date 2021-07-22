@@ -1,4 +1,4 @@
-package com.yzzzzun.itemservice.web.basic;
+package com.yzzzzun.itemservice.web.form;
 
 import java.util.List;
 
@@ -17,12 +17,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.yzzzzun.itemservice.domain.item.Item;
 import com.yzzzzun.itemservice.domain.item.ItemRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/basic/items")
-public class BasicItemController {
+public class FormItemController {
 	private final ItemRepository itemRepository;
 
-	public BasicItemController(ItemRepository itemRepository) {
+	public FormItemController(ItemRepository itemRepository) {
 		this.itemRepository = itemRepository;
 	}
 
@@ -104,6 +107,7 @@ public class BasicItemController {
 
 	@PostMapping("/add")
 	public String addItemV6(Item item, RedirectAttributes redirectAttributes){
+		log.info("item.open={}", item.getOpen());
 
 		itemRepository.save(item);
 		redirectAttributes.addAttribute("itemId",item.getId());
