@@ -492,3 +492,23 @@ th:text="#{label.item}"
 th:text="#{label.item.id}"
 ```
 
+
+
+### BindingResult
+
+스프링이 제공하는 검증오류 보관 객체, FieldError, ObjectError 로 필드, 글로벌 오류를 담는다.
+
+`BindingResult` 가 있으면 `@ModelAttribute` 에 데이터 바인딩 시 오류가 발생해도 컨트롤러가 호출된다.
+
+없으면 컨트롤러 호출없이 오류페이지로 이동한다.
+
+
+
+BindingResult검증 오류 적용 3가지 방법
+
+- ModelAttribute의 타입 오류등으로 실패하는경우 spring이 bindingResult에 넣음.
+
+- 개발자가 직접 추가
+
+- Validator사용
+
