@@ -12,7 +12,7 @@ public class Item {
 	private Integer quantity;
 
 	private Boolean open;//퍈매여부
-	private List<String> region; //등록지역
+	private List<String> regions; //등록지역
 	private ItemType itemType;
 	private String deliveryCode;
 

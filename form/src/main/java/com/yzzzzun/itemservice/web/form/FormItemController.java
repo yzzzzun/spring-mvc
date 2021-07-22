@@ -1,6 +1,8 @@
 package com.yzzzzun.itemservice.web.form;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yzzzzun.itemservice.domain.item.Item;
@@ -27,6 +28,15 @@ public class FormItemController {
 
 	public FormItemController(ItemRepository itemRepository) {
 		this.itemRepository = itemRepository;
+	}
+
+	@ModelAttribute("regions")
+	public Map<String, String> regions(){
+		Map<String, String> regions = new LinkedHashMap<>();
+		regions.put("SEOUL","서울");
+		regions.put("BUSAN","부산");
+		regions.put("JEJU","제주");
+		return regions;
 	}
 
 	@GetMapping
@@ -45,69 +55,15 @@ public class FormItemController {
 	}
 
 	@GetMapping("/add")
-	public String addForm(Model model)
-	{
+	public String addForm(Model model) {
 		model.addAttribute("item", new Item());
 		return "basic/addForm";
-	}
-
-	// @PostMapping("/add")
-	public String addItemV1(@RequestParam String itemName,
-		@RequestParam int price,
-		@RequestParam Integer quantity,
-		Model model){
-
-		Item item = new Item(itemName,price,quantity);
-		itemRepository.save(item);
-
-		model.addAttribute("item",item);
-
-		return "basic/item";
-	}
-
-	// @PostMapping("/add")
-	public String addItemV2(@ModelAttribute("item") Item item,
-		Model model){
-
-		itemRepository.save(item);
-
-		// @ModelAttribute 의 "item" 설정이 자동 추가해준다.
-		//model.addAttribute("item",item);
-
-		return "basic/item";
-	}
-
-	// @PostMapping("/add")
-	public String addItemV3(@ModelAttribute Item item,
-		Model model){
-
-		itemRepository.save(item);
-
-		// name설정을 안하면 클래스명의 첫글자를 소문자로 변경하여 addAttribute한다.
-		//model.addAttribute("item",item);
-
-		return "basic/item";
-	}
-
-	//@PostMapping("/add")
-	public String addItemV4(Item item){
-
-		itemRepository.save(item);
-
-		return "basic/item";
-	}
-
-	//@PostMapping("/add")
-	public String addItemV5(Item item){
-
-		itemRepository.save(item);
-
-		return "redirect:/basic/items/" + item.getId();
 	}
 
 	@PostMapping("/add")
 	public String addItemV6(Item item, RedirectAttributes redirectAttributes){
 		log.info("item.open={}", item.getOpen());
+		log.info("item.regions={}", item.getRegions());
 
 		itemRepository.save(item);
 		redirectAttributes.addAttribute("itemId",item.getId());
