@@ -512,3 +512,84 @@ BindingResult검증 오류 적용 3가지 방법
 
 - Validator사용
 
+
+
+FieldError, ObjectError는 다루기 번거롭다. 중복도 많아보인다.
+
+BindingResult는 검증할 target 객체를 이미 알고있다.
+
+BindingResult는 rejectValue, reject메서드를 통해 FieldError, ObjectError 를 직접 생성없이 오류를 처리할 수 있다.
+
+
+
+```
+bindingResult.rejectValue("quantity", "max", new Object[] {9999}, null);
+```
+
+errorCode를 모두 입력하지 않았는데 errors.properties에서 찾아올 수 있는 이유는 MessageCodesResolver 덕분이다.
+
+
+
+MessageCodesResolver를 이해하기전에 우선 오류 메세지 관리방법을 어떻게 해야 효율적일지 생각해보면..
+
+```
+#Level1
+required.item.name=상품 명은 필수 입니다.
+
+#Level2
+required=필수 값입니다.
+```
+
+required 코드의 에러 메세지를 찾으면 `required.item.name`, `required` 두개를 모두 찾고 detail한 메세지 순서로 사용하도록 한다.
+
+
+
+### MessageCodesResolver
+
+검증 오류 코드로 메시지 코드들을 생성한다.
+
+MessageCodesResolver는 인터페이스 DefaultMessageCodesResolver가 구현체
+
+```
+객체오류
+code + "." + object name
+code
+
+ex)
+required.item
+required
+
+필드오류
+code + "." + object name + "." + field
+code + "." + field
+code + "." + field type
+code
+
+ex)
+required.item.itemName
+required.itemName
+required.java.lang.String
+required
+```
+
+구체적인것에서 덜 구체적인 것으로..
+
+모든 오류코드에 대해 정의할 수 있지만 관리가 너무 힘들어진다.
+
+범용성있는 오류코드로 끝내고, 구체적으로 적어서 사용하는 방식이 효율적이다.
+
+
+
+직접 개발자가 오류 처리과정을 정리해보면
+
+`BindingResult` 의 rejectValue()를 호출하고
+
+`MessageCodesResolver` 를 통해 검증 오류 코드를 생성한다.
+
+`new FileError()` FieldError를 생성해서 메시지 코드를 보관한다.
+
+타임리프에서 `th:errors` 에서 메시지 코드들로 메시지를 순서대로 메시지에서 찾아 출력한다.
+
+
+
+그렇다면 BindingResult에 binding이 실패한경우에 Spring에서 반환하는 메시지는 어떻게 처리해야 할까..
