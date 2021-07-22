@@ -483,3 +483,12 @@ HTTP `accept-language` header값을 통해 설정, 사용자 선택을 통해 �
 
 스프링 부트는 자동으로 스프링 빈으로 `MessageSource` 를 등록한다.
 
+
+
+타임리프에서 사용은 다음과같이 사용한다.
+
+```html
+th:text="#{label.item}"
+th:text="#{label.item.id}"
+```
+
