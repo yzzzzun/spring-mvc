@@ -390,6 +390,49 @@ ${userMap['userA'].getUsername()}
 </div>
 ```
 
+기본 객체의 접근
+
+```
+${#request}
+${#response}
+${#session}
+${#locale}
+
+@{request.paramData} // 기본 객체에 대한 thymeleaf 편의기능 제공
+${session.sessionData} // 기본 객체에 대한 thymeleaf 편의기능 제공
+${@helloBean.hello("spring!")}  //스프링 빈에 접근
+```
+
+리터럴 : 소스 코드상 고정된값
+
+타임리프에서 문자리퍼털은 `'` 로 감싸야 한다. 공백없이 이어진값은 하나의 토큰으로 인정하여 생략가능하다.
+
+공백이 있으면 감싸야함!
+
+
+
+반복
+
+```html
+<tr th:each="user, userStat : ${users}">
+```
+
+두번째 파라미터를 설정해 리스트의 상태를 확인할 수 있는 기능들을 제공한다.
+
+두번째 파라미터는 생략이 가능하다. rule = 첫번째변수 + Stat
+
+
+
+javascript inline
+
+```html
+<script th:inline="javascript">
+```
+
+
+
+
+
 ---
 
 ### 참고
