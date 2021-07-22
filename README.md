@@ -354,7 +354,7 @@ spring.thymeleaf.suffix=.html
   <html xmlns:th="http://www.thymeleaf.org">
   ```
 
-### Escape
+### Thymeleaf - Escape
 
 HTML엔티티 : `<` 태그의 시작이 아니라 문자로 표현할 방법
 
@@ -363,6 +363,32 @@ HTML에서 사용하는 특수문자를 HTML엔티티로 변경하는것을 esca
 unEscape : 태그로 인식 -> `th:utext` 사용
 
 > escape를 사용하지 않아 HTML 이 정상 렌더링 되지 않는 문제가 발생하기도 한다. escape를 기본으로 하고 필요할떄 unescape을 사용해야 한다.
+
+### springEL
+
+Object, List, Map 의 EL 표현식
+
+```
+${user.username}
+${user.['username']}
+${user.getUsername()}
+
+${users[0].username}
+${users[0].['username']}
+${users[0].getUsername()}
+
+${userMap['userA'].username}
+${userMap['userA'].['username']}
+${userMap['userA'].getUsername()}
+```
+
+지역변수 선언 - 해당 태그내에서 사용, 벗어나면 사용 불가능
+
+```html
+<div th:with="first=${users[0]}">
+  <p>처음 사람의 이름은 <span th:text="${first.username}"></span></p>
+</div>
+```
 
 ---
 
