@@ -429,10 +429,6 @@ javascript inline
 <script th:inline="javascript">
 ```
 
-
-
-
-
 ---
 
 ### 참고
@@ -456,4 +452,34 @@ PRG -> Post/Redirect/Get
 redirect로 상품상세화면을 호출하도록 해주면 새로고침을 해도 추가되지 않는다.
 
 ---
+
+### 메세지 국제화
+
+공통된 label을 모두 변경해야하는경우 곳곳에 하드코딩된 메세지를 수정해야하는 문제가 있다.
+
+`message.properties` 라는 메시지 관리용 파일을 통해 관리한다.
+
+해당 properties의 키값을 통해 값을 불러 사용한다.
+
+
+
+하나더 나아가서 다국어를 지원할 수 있다.
+
+메시지 관리 파일을 언어별로 관리하는 방법이다.
+
+`message_en.properties`, `message_ko.properties` 이런식으로 언어별로 관리한다.
+
+
+
+접근한 지역에 따라 언어를 변경할 수 있다.
+
+HTTP `accept-language` header값을 통해 설정, 사용자 선택을 통해 설정, 쿠키 등을 사용해 처리하면된다.
+
+타임리프와 스프링은 메시지 국제화 기능을 편리하게 통합해서 제공한다.
+
+
+
+### 메시지 소스 설정
+
+스프링 부트는 자동으로 스프링 빈으로 `MessageSource` 를 등록한다.
 
