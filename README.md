@@ -785,3 +785,16 @@ HandlerInterceptor 인터페이스를 구현한다.
 afterCompletion 은 예외가 발생하던 정상처리되던 호출된다. 예외가 발생되면 ex 파라미터로 넘어온다.
 
 > Filter보다는 Interceptor를 사용하는게 편리하고 많은 기능제공함
+
+## ArgumentResolver
+
+parameter의 어노테이션을 직접 구현한다
+
+`HandlerMethodArgumentResolver` 를 구현한다.
+
+SupportsParameter에서 파라미터의 타입과 어노테이션을 체크
+
+ResolveArgument 에서는 원하는 값을 반환하도록 구현
+
+WebConfigurer addArgumentResolver 메서드로 구현한 argumentResolver를 추가한다.
+
