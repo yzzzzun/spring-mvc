@@ -690,3 +690,9 @@ SessionId를 재사용하려고 해도 만료되어 쓸모없어진다.
 
 Servlet에서 공식 지원하는 HttpSession이 있다.
 
+## HttpSession
+
+request.getSession(true) : 세션이 있으면 기존 세션 반환, 없으면 생성해서 반환
+
+request.getSession(false) : 세션이 있으면 기존세션 반환, 없으면 null
+
