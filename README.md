@@ -623,3 +623,17 @@ LocalValidatorFactoryBean을 글로벌 Bean으로 등록하고, 어노테이션�
 
 이런상황은 java코드로 작성하는것을 권장함
 
+### Bean Validation 한계
+
+등록과 수정의 validation을 다르게 적용할 때 난감한 상황이 발생한다.
+
+해결방법
+
+- BeanValidation의 group기능 을 사용해서 해결 -> 해보면 복잡하다.
+
+- ItemSaveForm, ItemUpdateForm 객체를 분리하여 해결
+
+  ​	 -> 이 방법이 더 깔끔, 들어가는 데이터가 달라질 가능성도 높다
+
+
+
