@@ -592,4 +592,34 @@ required
 
 
 
-그렇다면 BindingResult에 binding이 실패한경우에 Spring에서 반환하는 메시지는 어떻게 처리해야 할까..
+## BeanValidator
+
+Validator를 등록하지 않았음에도 어노태이션 기반의 validation이 가능한이유는
+
+Spring-boot-starter-validation 라이브러리가 자동으로 Bean Validator를 인지하고 스프링에 통합하기 때문..
+
+LocalValidatorFactoryBean을 글로벌 Bean으로 등록하고, 어노테이션을보고 검증을 수행함.
+
+### 검증 순서
+
+1. @ModelAttribute 각필드 타입에 변환 시도
+
+- 성공하면 다음으로
+- 실패하면 typeMismatch로 FieldError로 추가
+
+2. Validator 적용
+
+ **바인딩에 성공한 필드만 Bean Validation을 적용** 
+
+ 바인딩에 실패한건 적용하지 않는다. (일단 변경이 성공해야 validation이 의미있으니까)
+
+### BeanValidator - object
+
+```
+@ScriptAssert(lang = "javascript", script = "_this.price * _this.quantity >= 10000")
+```
+
+@ScriptAssert를 사용할 수 있지만 실제로 객체 검증 범위를 넘어서는 경우도 많고, 복잡하다.
+
+이런상황은 java코드로 작성하는것을 권장함
+
