@@ -654,3 +654,11 @@ LocalValidatorFactoryBean을 글로벌 Bean으로 등록하고, 어노테이션�
 @RequestBody 는 HttpMessageConverter 단계에서 Json데이터를 객체로 변경하지 못하면 이후 단계가 진행되지 않음
 
 ​	-> Controller호출도 안되고, Validator도 적용되지 않음
+
+## Login Session-Cookie
+
+**쿠키에는 영속 쿠키와 세션 쿠키가 있다**
+
+- 영속 쿠키: 만료 날짜를 입력하면 해당 날짜까지 유지
+- 세션 쿠키: 만료 날짜를 생략하면 브라우저 종료시 까지만 유지
+
