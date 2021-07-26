@@ -711,3 +711,38 @@ LastAccessedTime 이후로 timeout 시간이 지나면, WAS가 내부에서 해�
 HttpSession 에는 최소한의 데이터만 보관해야한다.
 
 보관데이터 용량 * 사용자수 -> 메모리 사용량이 급격하게 증가해 장애로 이어질 수 있다.
+
+## Filter - Interceptor
+
+공통으로 모든 Controller에 로그인 여부를 체크하고 로그인이 안되면 로그인페이지로 Redirect해야한다.
+
+그렇다고 모든 컨트롤러에 붙이는건 중복이 너무 많다.
+
+Cross-Cutting-Concern 공통 관심사 : 애플리케이션 여러 로직에서 공통으로 관심이 있는것
+
+웹과 관련된 공통 관심사는 Filter 또는 Interceptor를 사용하는것이 좋다.
+
+### ServletFilter
+
+서블릿이 지원하는 수문장
+
+> Http요청 -> WAS -> 필터 -> servlet -> controller
+
+필터가 호출되면 다음에 서블릿이 호출(스프링의 경우 DispatcherServlet으로 생각하면 됨)
+
+URL 패턴을 통해 적용
+
+```
+Http요청 -> WAS -> 필터 -> servlet -> controller 
+Http요청 -> WAS -> 필터 (적절하지 않은 요청으로 판단하면 서블릿 호출하지 않음)
+```
+
+**필터체인**
+
+```
+Http요청 -> WAS -> 필터1 -> 필터2 -> 필터3 -> ... -> servlet -> controller 
+```
+
+`doFilter()` : 요청이 들어올때마다 메서드가 호출, 필터의 로직을 구현하면 로직이 실행됨
+
+> 참고 Logback mdc : 하나의 요청에대한 라이프사이클동안 구분가능한 식별자를 자동으로 남길 수 있음
