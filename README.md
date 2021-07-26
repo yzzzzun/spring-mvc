@@ -696,3 +696,18 @@ request.getSession(true) : 세션이 있으면 기존 세션 반환, 없으면 �
 
 request.getSession(false) : 세션이 있으면 기존세션 반환, 없으면 null
 
+
+
+**세션 타임아웃 발생**
+
+세션의 타임아웃 시간은 해당 세션과 관련된 JSESSIONID 를 전달하는 HTTP 요청이 있으면 현재 시간으로 다시 초기화 된다. 이렇게 초기화 되면 세션 타임아웃으로 설정한 시간동안 세션을 추가로 사용할 수 있다. 
+
+session.getLastAccessedTime() : 최근 세션 접근 시간
+
+LastAccessedTime 이후로 timeout 시간이 지나면, WAS가 내부에서 해당 세션을 제거한다.
+
+**주의**
+
+HttpSession 에는 최소한의 데이터만 보관해야한다.
+
+보관데이터 용량 * 사용자수 -> 메모리 사용량이 급격하게 증가해 장애로 이어질 수 있다.
