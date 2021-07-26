@@ -635,5 +635,22 @@ LocalValidatorFactoryBean을 글로벌 Bean으로 등록하고, 어노테이션�
 
   ​	 -> 이 방법이 더 깔끔, 들어가는 데이터가 달라질 가능성도 높다
 
+### Bean Validation - Http Message Converter
 
+@ModelAttribute - url querystring, post Form 다룰때 사용
 
+@ReqeustBody - Http body 데이터를 객체로 변환할때, API JSON 요청시 사용
+
+- 성공 요청
+- 실패 요청 : Json 객체 생성 자체가 실패
+- 검증 오류 요청 : Json객체 생성은 성공했고, 검증실패
+
+### @ModelAttribute vs @RequestBody
+
+@ModelAttribute는 필드단위로 바인딩이 적용
+
+​	-> 특정 필드가 바인딩되지 않아도 나머지 필드는 바인딩되어 Validator 검증 가능
+
+@RequestBody 는 HttpMessageConverter 단계에서 Json데이터를 객체로 변경하지 못하면 이후 단계가 진행되지 않음
+
+​	-> Controller호출도 안되고, Validator도 적용되지 않음
