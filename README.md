@@ -1012,6 +1012,10 @@ Spring은 내부에서 conversionService를 사용해서 타입을 변환한다.
 
 
 
+@RequestParam 은 `ArgumentResolver` 인 RequestParamMethodArgumentResolver 에서 ConversionService로 타입을 변환
+
+
+
 
 
 
