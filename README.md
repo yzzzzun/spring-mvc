@@ -1001,7 +1001,14 @@ Controller 에 구현된 @ExceptionHandler를 깔끔하게 분리할 수 있다.
 
 Converting가능한가? Converting 기능 두가지만 제공
 
+`DefaultConversionService` 는 Converter를 등록하는 기능도 제공
 
+- ConversionService : 사용에 초첨
+- ConversionRegistry : 등록에 초점
+
+등록과 사용을 분리, 사용하는 입장에서는 Converter를 알 필요가 없음
+
+Spring은 내부에서 conversionService를 사용해서 타입을 변환한다.
 
 
 
