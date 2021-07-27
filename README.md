@@ -851,3 +851,9 @@ filterRegistrationBean.setDispatcherTypes(DispatcherType.ERROR, DispatcherType.R
 
 **인터셉터**
 
+```
+.excludePathPatterns("/css/**", "*.ico", "/error", "/error-page/**"); //경로자체를 제외하는 방식
+```
+
+경로를 제외해서 interceptor를 다시 거쳐가지 않도록 한다.
+
