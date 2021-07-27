@@ -976,6 +976,21 @@ API 오류는 세밀한 처리가 필요하다. 앞선 `BasicController` `Handle
 
 @ResponseStatus지정되어있으면 해당 statusCode 반환, 지정되지 않으면 200
 
+## @ControllerAdvice
+
+Controller 에 구현된 @ExceptionHandler를 깔끔하게 분리할 수 있다.
+
+대상 컨트롤러, 패키지, 클래스를 지정 할 수 있다.
+
+```
+@ControllerAdvice(annotations = RestController.class)
+@ControllerAdvice("org.example.controllers")
+@ControllerAdvice(assignableTypes = {ControllerInterface.class,
+  AbstractController.class})
+```
+
+
+
 
 
 
