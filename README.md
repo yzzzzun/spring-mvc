@@ -798,3 +798,38 @@ ResolveArgument 에서는 원하는 값을 반환하도록 구현
 
 WebConfigurer addArgumentResolver 메서드로 구현한 argumentResolver를 추가한다.
 
+## 예외처리
+
+서블릿의 예외처리 방식
+
+- Exception
+- response.sendError(Http status code, message)
+
+### Exception
+
+자바에서는 Exception이 main을 넘어서면 쓰레드가 종료된다.
+
+웹 애플리케이션은 별도의 쓰레드가 할당되고, 서블릿 컨테이너 안에서 실행된다. try~catch로 잡으면 문제가없지만 서블릿 밖으로 예외가 전달된다면
+
+```
+WAS(전파) <- filter <- servlet <- interceptor <- controller(예외 발생)
+```
+
+WAS까지 전파가되면 서버내부에서 처리할 수 없는 오류가 발생한것으로 생각해서 HTTP Status 500을 반환한다.
+
+### response.sendError(Http status code, message)
+
+오류가 발생했을 때 HttpServletResponse가 제공하는 sendError메서드를 사용
+
+서블릿 컨테이너에 오류가 발생했다는걸 전달 할 수 있다.(당장 예외가 발생하는건 아님)
+
+Response 내부에 오류가 발생했다는 상태를 저장하고 서블릿 컨테이너가 response의 sendError가 호출되었는지 확인하고 오류코드에 맞게 페이지를 보여준다.
+
+```
+WAS(sendError 호출 기록 확인) <- 필터 <- 서블릿 <- 인터셉터 <- 컨트롤러 (response.sendError())
+```
+
+WAS는 해당 예외에 맞는 오류 페이지 정보를 확인
+
+오류 페이지가 지정되어있으면 **WAS는 오류 페이지를 출력하기위해 URL을 다시 요청**한다. 단순 재요청이 아니라 오류정보를 request의 attribute를 추가해 넘겨준다.
+
