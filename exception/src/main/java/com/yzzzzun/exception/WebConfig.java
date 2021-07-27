@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.yzzzzun.exception.filter.LogFilter;
 import com.yzzzzun.exception.interceptor.LogInterceptor;
 import com.yzzzzun.exception.resolver.MyHandlerExceptionResolver;
+import com.yzzzzun.exception.resolver.UserHandlerExceptionResolver;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -32,6 +33,7 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
 		resolvers.add(new MyHandlerExceptionResolver());
+		resolvers.add(new UserHandlerExceptionResolver());
 	}
 
 	@Override
