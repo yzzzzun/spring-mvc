@@ -1010,8 +1010,6 @@ Converting가능한가? Converting 기능 두가지만 제공
 
 Spring은 내부에서 conversionService를 사용해서 타입을 변환한다.
 
-
-
 @RequestParam 은 `ArgumentResolver` 인 RequestParamMethodArgumentResolver 에서 ConversionService로 타입을 변환
 
 ### View 에서 Converter적용
@@ -1024,7 +1022,27 @@ Spring은 내부에서 conversionService를 사용해서 타입을 변환한다.
 
 `th:field` 는 컨버전 서비스가 자동 적용된다.
 
+## Formatter
 
+문자를 다른 타입으로 변환하거나, 다른 타입을 문자로 변환하는 상황이 대부분
+
+날짜나 숫자의 Format을 변경하는 경우들이 많다.
+
+Converter vs Formatter
+
+- Converter 는 범용
+
+- Formatter는 문자에 특화
+
+`String print(T object, Locale locale)` : 객체를 문자로
+
+`T parse(Sring text, Locale locale)` : 문자를 객체로
+
+### FormattingConversionService
+
+Formatter를 지원하는 컨버전서비스
+
+DefaultFormattingConversionService를 사용 Formatter, converter 모두 등록이 가능하다.
 
 
 
