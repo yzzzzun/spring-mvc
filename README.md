@@ -1014,9 +1014,15 @@ Spring은 내부에서 conversionService를 사용해서 타입을 변환한다.
 
 @RequestParam 은 `ArgumentResolver` 인 RequestParamMethodArgumentResolver 에서 ConversionService로 타입을 변환
 
+### View 에서 Converter적용
 
+타임리프에서..
 
+변수표현식 : ${...}
 
+컨버전 서비스 적용 : ${{...}}
+
+`th:field` 는 컨버전 서비스가 자동 적용된다.
 
 
 
