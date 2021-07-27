@@ -878,3 +878,9 @@ Resources/templates/error.html
 
 해당 경로에 Http Status code 이름의 뷰 파일을 넣어두면 오류페이지를 띄울 수 있다.
 
+## API예외 처리
+
+HTML 에러 페이지는 status에 대해서 페이지만 만들면 단순하게 처리가 가능하다.
+
+하지만 REST API의 경우 각 오류에 맞는 응답 spec을 정하고, Json으로 데이터를 내려줘야한다.
+
