@@ -913,3 +913,47 @@ sendError를 통해 statusCode를 지정하고, 빈 ModelAndView를 반환
 
  API 응답 처리
 
+**단점**
+
+ModelAndView를 반환하기때문에 json을 반환하기에 처리하기가 복잡함. 양이 많음
+
+## Spring 제공 ExceptionResolver
+
+`HandlerExceptionResolverComposite` 에 다음순서로 등록
+
+1. ExceptionHandlerExceptionResolver
+2. ResponseStatusExceptionResolver
+3. DefaultHandlerExceptionResolver
+
+### ExceptionHandlerExceptionResolver
+
+`@ExceptionHandler` 처리, API예외처리의 대부분 이 기능으로 해결
+
+### ResponseStatusExceptionResolver
+
+HttpStatus 코드를 지정
+
+```
+@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="error.bad")
+```
+
+MessageSource를 통해 에러 코드 지정 가능
+
+외부 라이브러리에서 발생하는 오류, 개발자가 직접 정의할 수 없는 예외에 적용할 수 없다는 한계..
+
+ResponseStatusException 예외를 사용해서 해결
+
+### DefaultHandlerExceptionResolver
+
+스프링 내부 기본 예외를 처리
+
+대표적인 예로, 바인딩 시점에 타입오류에서 TypeMismatchException발생, 하지만 500오류가 발생한다.
+
+하지만 파라미터 바인딩 오류는 클라이언트의 요청 오류로 400이 나가야 한다.
+
+`DefaultHandlerExceptionResolver` 는 500이 아닌 400으로 반환한다.
+
+
+
+
+
