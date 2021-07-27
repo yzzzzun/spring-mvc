@@ -955,5 +955,28 @@ ResponseStatusException 예외를 사용해서 해결
 
 
 
+## @ExceptionHandler
+
+API 오류는 세밀한 처리가 필요하다. 앞선 `BasicController` `HandlerExceptionResolver` 로 처리하기에는 구현이 복잡해지고 `ModelAndView`를 반환하기에 REST API 오류처리에는 적합하지 않다.
+
+`ExceptionHandlerExceptionResolver` 를 통해 @ExceptionHandler 어노테이션으로 예외처리를 편하게 할 수 있다.
+
+`ExceptionResolver` 중 우선순위가 가장 높다.
+
+**실행흐름**
+컨트롤러 호출결과 예외가 컨트롤러 밖으로 던져짐
+
+예외발생 -> ExceptionResolver 작동
+
+가장 우선순위가 높은 ExceptionHandlerExceptionResolver 실행
+
+컨트롤러에서 해당 오류를 처리할 수 있는 @ExceptionHandler 확인하고 정의된 메서드 실행
+
+@RestController 로 @ResponseBody적용 -> HttpConverter 사용해서 Json반환
+
+@ResponseStatus지정되어있으면 해당 statusCode 반환, 지정되지 않으면 200
+
+
+
 
 
