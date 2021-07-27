@@ -884,3 +884,10 @@ HTML 에러 페이지는 status에 대해서 페이지만 만들면 단순하게
 
 하지만 REST API의 경우 각 오류에 맞는 응답 spec을 정하고, Json으로 데이터를 내려줘야한다.
 
+### Spring boot 기본 오류 처리
+
+errorHtml() : produce = MediaType.TEXT_HTML_VALUE
+
+accept 헤더 값이 text/html인 경우 view를 제공
+
+error() : 그외 경우 호출, ResponseEntity로 JSON형식으로 반환
