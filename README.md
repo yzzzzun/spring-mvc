@@ -1044,5 +1044,11 @@ Formatter를 지원하는 컨버전서비스
 
 DefaultFormattingConversionService를 사용 Formatter, converter 모두 등록이 가능하다.
 
+> 컨버터를 사용하던, 포매터를 사용하던 등록 방법은 다르지만 컨버전 서비스로 일관성있게 사용할 수 있다.
 
+**주의!**
+
+컨버전 서비스는 @RequestParam, @ModelAttribute, @PathVariable, 뷰 템플릿에서 사용할 수 있다.
+
+HttpMessageConverter 는 컨버전 서비스가 적용되지 않는다. 메시지 바디의 내용을 객체로 변환하는것은 Jackson같은 라이브러리를 사용하기 때문.. 해당 라이브러리에서 제공하는 설정을 통해 포맷을 지정해야한다.
 
