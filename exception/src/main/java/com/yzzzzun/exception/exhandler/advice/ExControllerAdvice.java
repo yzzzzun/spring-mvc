@@ -12,7 +12,7 @@ import com.yzzzzun.exception.exhandler.ErrorResult;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = "com.yzzzzun.exception.api")
 public class ExControllerAdvice {
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
