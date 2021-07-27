@@ -989,6 +989,22 @@ Controller 에 구현된 @ExceptionHandler를 깔끔하게 분리할 수 있다.
   AbstractController.class})
 ```
 
+## Spring Converter
+
+@RequestParam 에서 자연스럽게 값이 변경되는건 스프링에서 타입을 변환해줬기때문..
+
+` org.springframework.core.convert.converter.Converter` 인터페이스를 구현하여 타입 컨버터를 구현한다.
+
+하지만 Converter로 구현해보면 직접 구현하는것과 큰 차이가없다.
+
+### ConversionService
+
+Converting가능한가? Converting 기능 두가지만 제공
+
+
+
+
+
 
 
 
