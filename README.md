@@ -833,3 +833,21 @@ WAS는 해당 예외에 맞는 오류 페이지 정보를 확인
 
 오류 페이지가 지정되어있으면 **WAS는 오류 페이지를 출력하기위해 URL을 다시 요청**한다. 단순 재요청이 아니라 오류정보를 request의 attribute를 추가해 넘겨준다.
 
+### 서블릿 예외처리시 필터
+
+was로 재요청하게되면 필터를 다시 타게된다.
+
+중복 호출되는건 비효율적이다.
+
+클라이언트로부터 발생한 정상요청인지, 오류페이지를 위한 내부요청인지 `DispatcherType`을 제공한다.
+
+**필터**
+
+```
+filterRegistrationBean.setDispatcherTypes(DispatcherType.ERROR, DispatcherType.REQUEST);
+```
+
+필터 등록시 DispatcherType을 지정할 수 있다. 기본값은 REQUEST로 오류발생으로 인해 재요청되면 Filter를 타지않는다.
+
+**인터셉터**
+
