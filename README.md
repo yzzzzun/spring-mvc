@@ -1052,3 +1052,34 @@ DefaultFormattingConversionService를 사용 Formatter, converter 모두 등록�
 
 HttpMessageConverter 는 컨버전 서비스가 적용되지 않는다. 메시지 바디의 내용을 객체로 변환하는것은 Jackson같은 라이브러리를 사용하기 때문.. 해당 라이브러리에서 제공하는 설정을 통해 포맷을 지정해야한다.
 
+## 파일 업로드
+
+HTML폼 전송 방식은 두가지로 분류된다.
+
+- application/x-www-form-urlencoded
+- Multipart/form-data
+
+문자와 바이너리를 동시에 전송해야하는 상황에선 multipart/form-data 방식으로 전송해야한다.
+
+Http Message의 형태는 대략적으로 다음과 같다.
+
+```
+POST /save HTTP/1.1
+Host: localhost:8080
+Content-Type: multipart/form-data; boundary=----XXX
+CContent-Length: 123123
+
+----XXX
+Content-Disposition: form-data; name="username"
+----XXX
+Content-Disposition: form-data; name="file1"; filename="intro.png"
+Content-Type:image/png
+
+123123aksdjfkasjkdf123123...
+----XXX---
+```
+
+Content-Disposition으로 항목별 헤더가 추가된다.
+
+파일의 경우 Content-Type이 추가된다.
+
