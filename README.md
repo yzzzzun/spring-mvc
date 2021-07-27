@@ -1083,3 +1083,36 @@ Content-Disposition으로 항목별 헤더가 추가된다.
 
 파일의 경우 Content-Type이 추가된다.
 
+---
+
+Multipart사용 옵션
+
+```
+spring.servlet.multipart.max-file-size=1MB
+spring.servlet.multipart.max-request-size=10MB
+```
+
+Max-file-size : 파일 하나의 최대 사이즈 제한
+
+max-request-size : 멀티파트 요청에 여러파일이 들어갈수있는데, 전체의 합 사이즈를 제한
+
+---
+
+spring.servlet.multipart.enabled = false
+
+기본값이 true 인데 끄면 멀티파트 관련 처리를 하지 않는다.
+
+true로 켜져있고 멀티파트 관련 처리를 하게되면,
+
+DispatcherServlet 의 MultipartResolver를 실행한다.
+
+MultipartResolver는 서블릿 컨테이너가 전달하는 HttpServletRequest를 MultipartHttpServletRequest로 변경하고
+
+이는 HttpServletRequest의 자식 인터페이스!
+
+스프링 기본 제공하는 MultipartResolver는 MultipartHttpServletRequest 인터페이스를 구현한 StandardMultipartHttpServletRequest를 반환한다. 하지만 MultipartFile이 더 편하게 사용할 수 있어 Spring의 MultipartFile을 사용한다.
+
+---
+
+servlet 파일전송시 Part를 읽어 파일형식의 데이터를 저장하는 로직을 구현한다.
+
