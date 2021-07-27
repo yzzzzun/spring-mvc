@@ -857,3 +857,24 @@ filterRegistrationBean.setDispatcherTypes(DispatcherType.ERROR, DispatcherType.R
 
 경로를 제외해서 interceptor를 다시 거쳐가지 않도록 한다.
 
+### Spring boot - 오류 페이지
+
+`BasicErrorController` 를 통해 기본적인 로직이 모두 개발되어있다.
+
+**뷰 템플릿**
+
+resources/templates/error/500.html
+
+resources/templates/error/5xx.html 
+
+**정적 리소스**
+resources/static/error/404.html
+
+resources/static/error/4xx.html
+
+**적용 대상 없을때**
+
+Resources/templates/error.html
+
+해당 경로에 Http Status code 이름의 뷰 파일을 넣어두면 오류페이지를 띄울 수 있다.
+

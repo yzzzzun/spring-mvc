@@ -2,7 +2,6 @@ package com.yzzzzun.exception.servlet;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
@@ -15,13 +14,18 @@ import lombok.extern.slf4j.Slf4j;
 public class ServletExController {
 
 	@GetMapping("/error-ex")
-	public void errorEx(){
+	public void errorEx() {
 		throw new RuntimeException("오류 발생");
 	}
 
 	@GetMapping("/error-404")
 	public void error404(HttpServletResponse response) throws IOException {
-		response.sendError(404,"404오류");
+		response.sendError(404, "404오류");
+	}
+
+	@GetMapping("/error-400")
+	public void error400(HttpServletResponse response) throws IOException {
+		response.sendError(400, "400오류");
 	}
 
 	@GetMapping("/error-500")
