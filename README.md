@@ -1116,3 +1116,4 @@ MultipartResolver는 서블릿 컨테이너가 전달하는 HttpServletRequest�
 
 servlet 파일전송시 Part를 읽어 파일형식의 데이터를 저장하는 로직을 구현한다.
 
+Spring을 사용할땐 `@RequestParam MultipartFile file` 파라미터로 전달
