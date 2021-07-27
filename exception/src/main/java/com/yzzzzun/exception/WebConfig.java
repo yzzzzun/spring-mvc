@@ -1,16 +1,20 @@
 package com.yzzzzun.exception;
 
+import java.util.List;
+
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.yzzzzun.exception.filter.LogFilter;
 import com.yzzzzun.exception.interceptor.LogInterceptor;
+import com.yzzzzun.exception.resolver.MyHandlerExceptionResolver;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -23,6 +27,11 @@ public class WebConfig implements WebMvcConfigurer {
 		filterRegistrationBean.addUrlPatterns("/*");
 		filterRegistrationBean.setDispatcherTypes(DispatcherType.ERROR, DispatcherType.REQUEST);
 		return filterRegistrationBean;
+	}
+
+	@Override
+	public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
+		resolvers.add(new MyHandlerExceptionResolver());
 	}
 
 	@Override

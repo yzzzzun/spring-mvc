@@ -891,3 +891,25 @@ errorHtml() : produce = MediaType.TEXT_HTML_VALUE
 accept 헤더 값이 text/html인 경우 view를 제공
 
 error() : 그외 경우 호출, ResponseEntity로 JSON형식으로 반환
+
+## HandlerExceptionResolver
+
+발생하는 예외에 따라 400,404 등 다른상태코드로 처리하고싶을때
+
+`HandlerExceptionResolver` 는 컨트롤러 밖으로 던져진 예외를 해결하고, 새로 정의할 수 있는 방법을 제공. 줄여서 `ExceptionResolver`라 한다.
+
+ExceptionResolver가 ModelAndView를 반환하는 이유는 Exception을 처리해서 정상흐름처럼 변경하는것이 목적
+
+sendError를 통해 statusCode를 지정하고, 빈 ModelAndView를 반환
+
+- 빈 ModelAndView : 뷰를 렌더링 하지 않고 정상흐름처럼 동작
+- ModelAndView 지정 : 뷰를 렌더링
+- null : 다음 ExceptionResolver를 찾고 없으면 servlet 밖으로 으로 Exception을 던진다.
+
+**활용**
+ 예외 상태 코드를 변환
+
+ 뷰 템플릿 처리
+
+ API 응답 처리
+
